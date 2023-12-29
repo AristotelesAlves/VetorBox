@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Vetor {
+  id String @id
+  url_image String
+  url_path String
+  description String
+  post Post[]
+  @@map("vetor")
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  user Users @relation(fields: [id_user], references: [id])
+  vetor Vetor @relation(fields: [id_vetor], references: [id])
+  downloads Int?
+  id_user Int
+  id_vetor String
+}
+
+model Users{
+  id Int @id @default(autoincrement())
+  name String
+  email String
+  passworld String
+  post Post[]
+}
