@@ -1,7 +1,5 @@
 import { X } from 'phosphor-react';
-import React, { useState, useEffect } from 'react';
-import Gorda from '../../assets/gorda.jpg'
-import { BoxImg } from '../BoxImg';
+import React, { useEffect } from 'react';
 
 interface ModalProps {
   isOpen: boolean;
@@ -40,7 +38,7 @@ export function Modal({
             </div>
             <div className='flex-1 py-5 pr-5 min-w-[300px] h-full'>
                 <header className=''>
-                    <div className=' flex justify-between items-start'>
+                    <div className=' flex justify-between items-start pb-3'>
                         <div>
                             <h1 className='font-bold text-xl'>
                                 {NomeVetor}
@@ -65,13 +63,13 @@ export function Modal({
                                     EPS
                                 </li>
                             </ul>
-                            <button className='p-2 w-full rounded-lg text-white font-semibold bg-sky-800'>
+                            <button className='p-2 w-full rounded-lg text-white font-semibold bg-sky-600'>
                                 Download
                             </button>
                             <ul className='flex gap-2 items-center flex-wrap text-sm uppercase'>
                                 {categorias.map((ct) => {
                                     return (
-                                        <li className=' px-2 font-semibold bg-slate-200 rounded-lg shadow-md'>
+                                        <li className=' px-2  bg-slate-200 rounded-sm shadow-md'>
                                             {ct}
                                         </li>
                                     )
@@ -79,11 +77,7 @@ export function Modal({
                             </ul>
                         </div>
                     </div>
-                    <div>
-                        <p  className=''>
-                            Vetores relacionados 
-                        </p>
-                        <div className=' flex gap-1 flex-wrap max-w-[300px]'>
+                        {/* <div className=''>
                             {relacionados.map((rc) => {
                                 return (
                                     <button className='w-24 h-24 shadow-lg rounded-xl overflow-hidden'>
@@ -91,8 +85,7 @@ export function Modal({
                                     </button>
                                 )
                             })}
-                        </div>
-                    </div>
+                        </div> */}
                 </section>
             </div>
           </div>

@@ -2,7 +2,7 @@ export const DadosIMG = [
     {
       "id": 1,
       "ImageModal": "https://i.pinimg.com/564x/d1/b9/07/d1b907a965a32a7a3003043d507255d1.jpg",
-      "NomeVetor": "Nome_do_Vetor_1",
+      "NomeVetor": "Gatinho dando Legal",
       "categorias": ["Categoria1", "Categoria2"],
       "linkDownload": "https://i.pinimg.com/564x/d1/b9/07/d1b907a965a32a7a3003043d507255d1.jpg",
       "relacionados": [
@@ -14,8 +14,8 @@ export const DadosIMG = [
     {
       "id": 2,
       "ImageModal": "https://i.pinimg.com/564x/e0/da/a8/e0daa85cf6b65f9134eedcff99362194.jpg",
-      "NomeVetor": "Nome_do_Vetor_2",
-      "categorias": ["Categoria3", "Categoria4"],
+      "NomeVetor": "Gatinho empresário",
+      "categorias": ["Gato", "Pet", "Social", "Empresário"],
       "linkDownload": "https://i.pinimg.com/564x/e0/da/a8/e0daa85cf6b65f9134eedcff99362194.jpg",
       "relacionados": [
         "https://i.pinimg.com/736x/be/db/d4/bedbd48283de5ec4181debe33a9d8dcc.jpg",
