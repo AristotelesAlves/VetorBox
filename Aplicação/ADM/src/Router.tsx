@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Home } from './pages/Home'
-import { Search } from './pages/Search'
-import { NovoVetores } from './pages/NovoVetores'
+import { Vetor } from './pages/Vetor'
 
 const router = createBrowserRouter([
     { 
@@ -14,7 +13,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/novo-vetor',
-                element: <NovoVetores/>
+                element: <Vetor/>
             },
             {
                 path: '/rank',
