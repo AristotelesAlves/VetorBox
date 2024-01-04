@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Vetor } from './pages/Vetor'
+import { Galerial } from './pages/Galeria'
 
 const router = createBrowserRouter([
     { 
@@ -9,10 +10,10 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/vetores',
-                element: <div>vetores</div>
+                element: <Galerial/>
             },
             {
-                path: '/novo-vetor',
+                path: '/vetor/pin/:id/',
                 element: <Vetor/>
             },
             {
