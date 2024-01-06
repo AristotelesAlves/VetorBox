@@ -23,41 +23,40 @@ export function Galerial(){
         const fetchData = async () => {
           try {
             const service = new VetoresServices();
-            const result = await service.vetores(); // Aguarde a resolução da Promise
+            const result = await service.vetores();
             setVetores(result)
           } catch (error) {
             console.error('Erro ao obter vetores:', error);
           }
         };
-      
         fetchData();
     },);
 
 
     return (
-        <div className="px-2 w-full h-full flex gap-3 flex-wrap overflow-y-scroll justify-center">
+        <div className="h-full px-4 pb-4">
+            <div className="columns-3xs w-full">
             {vetores.map((result) => {
                 return(
-                    <div key={Math.random()} className="w-80 h-fit rounded-lg p-4 bg-white drop-shadow-lg">
-                        <img src={placeholderImg} alt="" />
-                        <div className="flex items-center justify-between bg-white">
-                            <h2>
-                                {result.Nome}
-                            </h2>
-                            <div className="flex items-center gap-1 py-2">
-                                <Download/>
-                                <p>
-                                    {result.Downloads.toString()}
-                                </p>
+                    <div  key={result.ID_Vetor} className="h-fit rounded-lg bg-white drop-shadow-lg mb-3 overflow-hidden group">
+                        <a href={`/vetor/pin/${result.ID_Vetor}`}>
+                            <img src={result.URL_IMG.length > 0 ? result.URL_IMG : placeholderImg} alt="" className="w-full" />
+                            <div className="flex items-center justify-between bg-white px-3  group-hover:bg-sky-600 group-hover:text-white">
+                                <h2 className="font-semibold">
+                                    {result.Nome}
+                                </h2>
+                                <div className="flex items-center gap-1 py-2">
+                                    <Download/>
+                                    <p>
+                                        {result.Downloads.toString()}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 )
             })}
-
-            
-
-
+            </div>
         </div>
     )
 }

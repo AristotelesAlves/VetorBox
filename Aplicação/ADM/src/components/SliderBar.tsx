@@ -19,7 +19,7 @@ export function SliderBar(){
             </div>
             <ul className="flex items-center gap-10 px-5">
                 <li className="font-semibold text-white">
-                    <a href="/vetores">Galeria</a>
+                    <a href="/">Galeria</a>
                 </li>
                 <li className="font-semibold text-white">
                     <a href="/rank">Rank</a>

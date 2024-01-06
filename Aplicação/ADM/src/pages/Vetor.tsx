@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import placeholderIMG from '../assets/placeholderIMG.jpg';
-import { Check } from 'phosphor-react';
 import { EncurtaNet } from '../service/EncurtaNet';
 import { VetoresServices } from '../service/VetoresServices';
+import { useParams } from 'react-router-dom';
+import { SelectCategoria } from '../components/SelectCategoria';
 
 interface IVetor {
   Category: string[];
@@ -10,12 +11,19 @@ interface IVetor {
   URL_IMG: string;
   URL_PNG: string;
   URL_SVG: string;
+  shortURLSVG: string;
+  shortURLEPS: string;
+  shortURLPNG: string;
   Downloads: number;
   Nome: string;
   ID_Usuario: number;
 }
 
 export function Vetor() {
+
+  const slug = useParams()
+  const id = slug.id !== undefined ? slug.id : ''
+
   const [vetorData, setVetorData] = useState<IVetor>({
     Category: [''],
     URL_EPS: '',
@@ -23,6 +31,9 @@ export function Vetor() {
     URL_PNG: '',
     URL_SVG: '',
     Downloads: 0,
+    shortURLSVG: '',
+    shortURLEPS: '',
+    shortURLPNG: '',
     Nome: '',
     ID_Usuario: 1,
   });
@@ -37,23 +48,37 @@ export function Vetor() {
     const fetchData = async () => {
       try {
         const service = new VetoresServices();
-        const result = await service.showOne('ds'); // caso não encontre, retorna a mensagem "Vetor não encontrado"
-        console.log(result);
+        const result = await service.showOne(id);
+
+        if(result === 'Vetor não encontrado'){
+          return
+        }
+
+        setVetorData({...vetorData,
+          Downloads: result.Downloads,
+          Category: result.Category,
+          ID_Usuario: result.ID_Usuario,
+          Nome: result.Nome,
+          URL_EPS: result.URL_EPS,
+          URL_IMG: result.URL_IMG,
+          URL_PNG: result.URL_PNG,
+          URL_SVG: result.URL_SVG,
+        })
       } catch (error) {
         console.error('Erro ao obter vetores:', error);
       }
     };
 
     fetchData();
-  }, []); // Corrigi a vírgula aqui, removendo a vírgula extra.
+  },);
 
   async function handleSubmit() {
     try {
       const service = new VetoresServices();
       const result = await service.Create(vetorData);
       console.log(result)
-      // setVetorData(result)
-      // result ? window.alert('Enviado com sucesso!') : null
+      setVetorData(result)
+      result ? window.alert('Enviado com sucesso!') : null
     } catch (error) {
       console.error('Erro ao obter vetores:', error);
     }
@@ -62,21 +87,20 @@ export function Vetor() {
 
   async function handleBlur(urlKey: string, type: string) {
     const url = await EncurtaNet(urlKey);
-    setShortenedUrl({ ...shortenedUrl, [type]: url.shortenedUrl });
-    console.log(shortenedUrl);
+    setVetorData({ ...vetorData, [type]: url.shortenedUrl });
   }
 
   return (
     <div className='flex gap-5 py-4 justify-center px-20'>
       <div className='w-[40%] overflow-hidden p-2 bg-white rounded-md drop-shadow-md h-fit'>
         <div>
-          <img src={vetorData.URL_PNG.length ? placeholderIMG : vetorData.URL_PNG} className='rounded-md' alt='' />
+          <img src={vetorData.URL_PNG.length > 0 ? vetorData.URL_PNG : placeholderIMG } className='rounded-md w-full' alt='' />
         </div>
         <div className='flex flex-col'>
           <strong>Nome: {vetorData.Nome}</strong>
-          <strong>URL PNG: {shortenedUrl.png}</strong>
-          <strong>URL EPS: {shortenedUrl.eps}</strong>
-          <strong>URL SVG: {shortenedUrl.svg}</strong>
+          <strong>URL PNG: {vetorData.shortURLEPS}</strong>
+          <strong>URL EPS: {vetorData.shortURLPNG}</strong>
+          <strong>URL SVG: {vetorData.shortURLSVG}</strong>
           <strong>Downloads: 0</strong>
         </div>
       </div>
@@ -137,17 +161,22 @@ export function Vetor() {
               onBlur={() => handleBlur(vetorData.URL_PNG, 'png')}
             />
           </div>
-
-          <div className='w-full gap-1 flex flex-col'>
+          <SelectCategoria/>
+          {/* <div className='w-full gap-1 flex flex-col'>
             <label>Categorias:</label>
             <div className='w-full px-2 py-1 border border-zinc-400 rounded-md'>
               <select name='categorias' className='w-full'></select>
             </div>
-          </div>
+          </div> */}
+          
         </div>
+
         <div className='w-full flex items-center justify-end px-5 py-3'>
-          <button type="button" onClick={handleSubmit}>Adicionar</button>
+          <button type="button" onClick={handleSubmit}>
+            {id == "novo-vetor" ? "Adicionar" : "Salvar"}
+          </button>
         </div>
+
       </form>
     </div>
   );

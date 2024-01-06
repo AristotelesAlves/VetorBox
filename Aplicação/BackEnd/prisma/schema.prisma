@@ -15,6 +15,9 @@ model Vetores {
   URL_SVG String
   URL_EPS String
   URL_PNG String
+  shortURLSVG String
+  shortURLEPS String
+  shortURLPNG String
   Downloads Int
   create_at DateTime
   Update_at DateTime

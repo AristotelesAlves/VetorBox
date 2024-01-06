@@ -19,7 +19,7 @@ export class VetoresServices{
   }
 
   async showOne(id: string){
-    const result = await Instance.get(`/vetor/:${id}`);
+    const result = await Instance.get(`/vetor/${id}`);
     return result.data
   }
 
