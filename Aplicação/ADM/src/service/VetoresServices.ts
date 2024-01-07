@@ -1,7 +1,7 @@
 import { Instance } from "./Instance";
 
 interface IVetorData {
-  Category: string[];
+  Category?: string[];
   URL_EPS: string;
   URL_IMG: string;
   URL_PNG: string;

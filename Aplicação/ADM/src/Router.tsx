@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Vetor } from './pages/Vetor'
 import { Galerial } from './pages/Galeria'
-import { Test } from './pages/Test'
 
 const router = createBrowserRouter([
     { 
@@ -19,7 +18,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/rank',
-                element: <Test/>
+                element: <h1>oi</h1>
             },
         ]
     } 
