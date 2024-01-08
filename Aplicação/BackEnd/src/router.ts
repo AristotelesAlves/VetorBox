@@ -5,12 +5,10 @@ import { VetorController } from "./controller/VetorController";
 
 export const router = Router();
 
-const categoriaController = new CategoriaController();
-
-router.get('/categorias', categoriaController.many);
-router.get('/categoria/:ID_Categoria', categoriaController.showOne);
-router.post('/categoria', categoriaController.create);
-router.delete('/categoria/:ID_Categoria', categoriaController.delete);
+router.get('/categorias', new CategoriaController().many);
+router.get('/categoria/:ID_Categoria', new CategoriaController().showOne);
+router.post('/categoria', new CategoriaController().create);
+router.delete('/categoria/:ID_Categoria', new CategoriaController().delete);
 
 router.get('/vetores', new VetorController().list);
 router.get('/vetor/:id', new VetorController().showOne);

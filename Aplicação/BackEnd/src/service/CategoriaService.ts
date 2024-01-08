@@ -59,11 +59,12 @@ export class CategoriaService{
     }
     async many(){
         try {
-            const date = await prismaClient.categorias.findMany({})
+            const date = await prismaClient.categorias.findMany()
             return date
         } catch (error) {
             console.error('Error list category:', error)
             return
         }
     }
+
 }
