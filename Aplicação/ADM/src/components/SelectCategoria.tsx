@@ -23,7 +23,12 @@ export function SelectCategoria({ onValueChange, select }: ISelectCategoria) {
   
   const [selectedValues, setSelectedValues] = useState<MultiValue<OptionType>>(select);
 
-  useEffect(() => setSelectedValues(select),[])
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setSelectedValues(select);
+    }, 5000);
+    return () => clearTimeout(timeoutId);
+  }, [select]);
 
   const fetchData = async () => {
     try {

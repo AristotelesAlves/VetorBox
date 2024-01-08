@@ -13,3 +13,4 @@ router.delete('/categoria/:ID_Categoria', new CategoriaController().delete);
 router.get('/vetores', new VetorController().list);
 router.get('/vetor/:id', new VetorController().showOne);
 router.post('/vetor', new VetorController().newVetor);
+router.put('/vetor', new VetorController().update);

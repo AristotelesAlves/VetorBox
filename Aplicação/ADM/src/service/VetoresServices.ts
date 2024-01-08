@@ -32,4 +32,14 @@ export class VetoresServices{
       throw error;
     }
   }
+
+  async update(data: IVetorData){
+    try {
+      const result = await Instance.put('/vetor',data);
+      return result.data
+    } catch (error) {
+      console.error('Erro ao editar vetor:', error);
+      throw error;
+    }
+  }
 }
