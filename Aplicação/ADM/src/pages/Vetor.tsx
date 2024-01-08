@@ -7,7 +7,7 @@ import { SelectCategoria } from '../components/SelectCategoria';
 import { MultiValue } from 'react-select';
 
 interface IVetor {
-  Category?: string[];
+  Category: string[];
   URL_EPS: string;
   URL_IMG: string;
   URL_PNG: string;
@@ -173,13 +173,16 @@ export function Vetor() {
           </div>
           <div className='w-full gap-1 flex flex-col'>
             <label>Url PNG:</label>
-            <SelectCategoria onValueChange={handleSelectChage}/>
+            <SelectCategoria select={vetorData.Category.map(category => {return {value: category, label: category}})} onValueChange={handleSelectChage}/>
           </div>
         </div>
 
-        <div className='w-full flex items-center justify-end px-5 py-3'>
-          <button type="button" onClick={handleSubmit}>
-            {id == "novo-vetor" ? "Adicionar" : "Salvar"}
+        <div className='w-full flex items-center justify-end px-5 py-3 gap-4'>
+          <a className='rounded-md text-white bg-red-500 shadow-md px-3 py-2' href='/'>
+            Cancelar
+          </a>
+          <button className='rounded-md text-white bg-sky-600 shadow-md px-3 py-2' type="button" onClick={id == "novo-vetor" ? handleSubmit : () => window.alert('Desculpa ainda não esta funcionando! otario!')}>
+            {id == "novo-vetor" ? "Adicionar" : "Salvar modificação"}
           </button>
         </div>
       </form>
